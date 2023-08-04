@@ -1,0 +1,110 @@
+/* Styles for the entire page */
+body {
+    background-color: #1c1c1c; /* Dark background color */
+    color: #fff; /* White text color */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  header {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  .content {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  /* Styles for the code editor container */
+  .code-editor-container {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .code-editor-container h3 {
+    font-size: 18px;
+  }
+
+  /* Styles for the Display container */
+  .display-container {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .display-container h3 {
+    font-size: 18px;
+  }
+
+  
+  .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  button, select{
+    background-color: #2a2a2a; 
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  button:hover , select:hover{
+    background-color: #444; 
+  }
+
+  
+  /* Styles for the display area */
+  .display-area {
+    flex: 1;
+    padding: 20px;
+    background-color: #333; /* Dark gray display area background */
+    border-radius: 4px;
+  }
+
+  .display-area {
+    flex: 1;
+    padding: 20px;
+    background-color:#333;
+    border-radius: 4px;
+    overflow-y: auto; /* Add a scrollbar when content overflows */
+  }
+  
+  .display-area ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .display-area li {
+    margin-bottom: 10px;
+  }
+  
+
+  .footer {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
