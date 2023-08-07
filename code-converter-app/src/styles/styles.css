@@ -108,3 +108,46 @@ body {
     margin-top: 20px;
   }
   
+
+
+.display-area {
+  color: #f8f8f8;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+  background-color: #1e1e1e; /* Dark gray background */
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.display-area .tag {
+  color: #ff8000; /* Orange */
+  font-weight: bold;
+}
+
+.display-area .tag-closing {
+  color: #ff8000; /* Orange */
+  font-weight: bold;
+}
+
+.display-area .attribute {
+  color: #80ff00; /* Lime Green */
+}
+
+.display-area .attribute-value {
+  color: #00ff80; /* Light Green */
+}
+
+.display-area .comment {
+  color: #888888; /* Gray */
+  font-style: italic;
+}
+
+.display-area .string {
+  color: #ff00ff; /* Magenta */
+}
+
+.display-area .number {
+  color: #00ffff; /* Cyan */
+}

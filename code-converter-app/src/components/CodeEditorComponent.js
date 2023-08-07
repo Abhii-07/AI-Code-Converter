@@ -6,7 +6,7 @@ function CodeEditorComponent() {
   const textRef = useRef();
   const [code, setCode] = useState(`// Write your code here`);
   const [output, setOutput] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState("Java");
+  const [selectedLanguage, setSelectedLanguage] = useState("javascript");
   const [convertLoading, setConvertLoading] = useState(false);
   const [debugLoading, setDebugLoading] = useState(false);
   const [reviewLoading, setReviewLoading] = useState(false);
@@ -29,12 +29,13 @@ function CodeEditorComponent() {
       .then((data) => {
         // Update the display area with the converted code
         setOutput(data.content);
-        console.log("Converted code:", data.content);
+        console.log("Converted code:", data);
         setConvertLoading(false);
       })
       .catch((error) => {
         console.error("Error converting code:", error);
         setOutput("Error converting code. Please check the console for details.");
+        setConvertLoading(false);
       });
   };
 
@@ -55,6 +56,7 @@ function CodeEditorComponent() {
       .catch((error) => {
         console.error("Error debugging code:", error);
         setOutput("Error debugging code. Please check the console for details.");
+        setDebugLoading(false);
       });
   };
 
@@ -75,10 +77,9 @@ function CodeEditorComponent() {
       .catch((error) => {
         console.error("Error reviewing code:", error);
         setOutput("Error reviewing code. Please check the console for details.");
+        setReviewLoading(false);
       });
   };
-
-
 
   return (
     <div className="container">
@@ -116,7 +117,6 @@ function CodeEditorComponent() {
             <option value="cpp">C++</option>
           </select>
         </div>
-
       </header>
       <div className="content">
         <div className="code-editor-container">
@@ -135,34 +135,19 @@ function CodeEditorComponent() {
               height: "500px",
             }}
           />
-
         </div>
 
         <div className="display-container">
           <h3>Display</h3>
-          <div className="display-area">
-            {output && (
-              <ul>
-                {output.split("\n").map((point, index) => (
-                  <li key={index}>{point}</li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <pre className="display-area">{output}</pre>
         </div>
-
-
-
       </div>
 
       <footer className="footer">
         <p>© {new Date().getFullYear()} Abhijeet Hiwale. All rights reserved.</p>
       </footer>
-
     </div>
-
   );
 }
-
 
 export default CodeEditorComponent;
