@@ -85,28 +85,31 @@ function CodeEditorComponent() {
     <div className="container">
       <header>
         <h1>Code Converter</h1>
-        <div className="buttons">
-          <button onClick={handleConvert} disabled={convertLoading}>
-            {convertLoading ? (
-              <span style={{ color: "red" }}>Converting...</span>
-            ) : (
-              "Convert"
-            )}
-          </button>
-          <button onClick={handleDebug} disabled={debugLoading}>
-            {debugLoading ? (
-              <span style={{ color: "red" }}>Debugging...</span>
-            ) : (
-              "Debug"
-            )}
-          </button>
-          <button onClick={handleReview} disabled={reviewLoading}>
-            {reviewLoading ? (
-              <span style={{ color: "red" }}>Reviewing...</span>
-            ) : (
-              "Review"
-            )}
-          </button>
+
+        <div className="buttons-container">
+          <div className="buttons">
+            <button onClick={handleConvert} disabled={convertLoading}>
+              {convertLoading ? (
+                <span style={{ color: "green" }}>Converting...</span>
+              ) : (
+                "Convert"
+              )}
+            </button>
+            <button onClick={handleDebug} disabled={debugLoading}>
+              {debugLoading ? (
+                <span style={{ color: "green" }}>Debugging...</span>
+              ) : (
+                "Debug"
+              )}
+            </button>
+            <button onClick={handleReview} disabled={reviewLoading}>
+              {reviewLoading ? (
+                <span style={{ color: "green" }}>Reviewing...</span>
+              ) : (
+                "Review"
+              )}
+            </button>
+          </div>
           <select
             value={selectedLanguage}
             onChange={(e) => setSelectedLanguage(e.target.value)}
@@ -117,6 +120,7 @@ function CodeEditorComponent() {
             <option value="cpp">C++</option>
           </select>
         </div>
+
       </header>
       <div className="content">
         <div className="code-editor-container">
@@ -136,6 +140,7 @@ function CodeEditorComponent() {
             }}
           />
         </div>
+
 
         <div className="display-container">
           <h3>Display</h3>

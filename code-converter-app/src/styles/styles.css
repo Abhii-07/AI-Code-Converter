@@ -1,36 +1,81 @@
 /* Styles for the entire page */
+/* Base styles for all screen sizes */
 body {
-    background-color: #1c1c1c; /* Dark background color */
-    color: #fff; /* White text color */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  header {
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-  }
-  
-  h1 {
-    font-size: 24px;
-  }
-  
+  background-color: #1c1c1c;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically on smaller screens */
+  align-items: center; /* Center align elements */
+}
+
+/* Styles for larger screens (desktops and tablets) */
+@media (min-width: 768px) {
   .content {
-    /* border: 1px solid red; */
-    display: flex;
-    justify-content: space-between;
+    flex-direction: row; /* Display elements side by side on larger screens */
     align-items: flex-start;
   }
+
+  .code-editor-container {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .display-container {
+    flex: 1;
+    padding: 20px;
+  }
+
+  select {
+    margin-top: 10px; /* Add spacing between select and buttons */
+  }
+
+}
+
+/* Styles for mobile screens */
+@media (max-width: 767px) {
+  .buttons-container {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    align-items: center; /* Center align elements */
+  }
+
+  .buttons {
+    margin-top: 10px; /* Add spacing between buttons */
+  }
+
+  select {
+    margin-top: 10px; /* Add spacing between select and buttons */
+  }
+
+  .code-editor-container {
+    width: 100%; /* Increase the width to 100% for better visibility on small screens */
+  }
+}
+
+
   
   /* Styles for the code editor container */
   .code-editor-container {
