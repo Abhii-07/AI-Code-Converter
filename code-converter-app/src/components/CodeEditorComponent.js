@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import CodeEditor, { SelectionText } from "@uiw/react-textarea-code-editor";
 import "../styles/styles.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function CodeEditorComponent() {
   const textRef = useRef();
@@ -20,63 +22,104 @@ function CodeEditorComponent() {
 
   const handleConvert = () => {
     setConvertLoading(true);
-    // Implement code conversion functionality
     const apiEndpoint = "http://localhost:8080/api/generate-response";
     const encodedCode = encodeURIComponent(code);
 
-    fetch(`${apiEndpoint}?codeSnippet=${encodedCode}&language=${selectedLanguage}`)
-      .then((response) => response.json())
+    fetch(
+      `${apiEndpoint}?codeSnippet=${encodedCode}&language=${selectedLanguage}`
+    )
+      .then(async (response) => {
+        if (!response.ok) {
+          const error = await response.json();
+          console.error("Error response:", error); // Debugging line
+
+          // Parse the nested JSON string in `content`
+          const errorContent = JSON.parse(error.content || "{}");
+          const errorMessage =
+            errorContent.error?.message || "An unknown error occurred.";
+
+          throw new Error(errorMessage);
+        }
+        return response.json();
+      })
       .then((data) => {
-        // Update the display area with the converted code
         setOutput(data.content);
-        console.log("Converted code:", data);
         setConvertLoading(false);
       })
       .catch((error) => {
-        console.error("Error converting code:", error);
-        setOutput("Error converting code. Please check the console for details.");
+        console.error("Error converting code:", error); // Debugging line
+        toast.error(`Error: ${error.message}`);
+        setOutput(
+          "Error converting code. Please check the console for details."
+        );
         setConvertLoading(false);
       });
   };
 
   const handleDebug = () => {
     setDebugLoading(true);
-    // Implement code debugging functionality
     const apiEndpoint = "http://localhost:8080/api/debug-code";
     const encodedCode = encodeURIComponent(code);
 
     fetch(`${apiEndpoint}?codeSnippet=${encodedCode}`)
-      .then((response) => response.json())
+      .then(async (response) => {
+        if (!response.ok) {
+          const error = await response.json();
+          console.error("Error response:", error); // Debugging line
+
+          // Parse the nested JSON string in `content`
+          const errorContent = JSON.parse(error.content || "{}");
+          const errorMessage =
+            errorContent.error?.message || "An unknown error occurred.";
+
+          throw new Error(errorMessage);
+        }
+        return response.json();
+      })
       .then((data) => {
-        // Update the display area with the debug output
         setOutput(data.content);
-        console.log("Debug output:", data.content);
         setDebugLoading(false);
       })
       .catch((error) => {
-        console.error("Error debugging code:", error);
-        setOutput("Error debugging code. Please check the console for details.");
+        console.error("Error debugging code:", error); // Debugging line
+        toast.error(`Error: ${error.message}`);
+        setOutput(
+          "Error debugging code. Please check the console for details."
+        );
         setDebugLoading(false);
       });
   };
 
   const handleReview = () => {
     setReviewLoading(true);
-    // Implement code quality review functionality
     const apiEndpoint = "http://localhost:8080/api/code-quality-check";
     const encodedCode = encodeURIComponent(code);
 
     fetch(`${apiEndpoint}?codeSnippet=${encodedCode}`)
-      .then((response) => response.json())
+      .then(async (response) => {
+        if (!response.ok) {
+          const error = await response.json();
+          console.error("Error response:", error); // Debugging line
+
+          // Parse the nested JSON string in `content`
+          const errorContent = JSON.parse(error.content || "{}");
+          const errorMessage =
+            errorContent.error?.message || "An unknown error occurred.";
+
+          throw new Error(errorMessage);
+        }
+        return response.json();
+      })
       .then((data) => {
-        // Display code quality metrics and suggestions in the display area
         setOutput(data.content);
-        console.log("Code quality review:", data.content);
         setReviewLoading(false);
       })
       .catch((error) => {
-        console.error("Error reviewing code:", error);
-        setOutput("Error reviewing code. Please check the console for details.");
+        console.error("Error reviewing code:", error); // Debugging line
+        toast.error(`Error: ${error.message}`);
+        setOutput(
+          "Error reviewing code. Please check the console for details."
+        );
         setReviewLoading(false);
       });
   };
@@ -120,7 +163,6 @@ function CodeEditorComponent() {
             <option value="cpp">C++</option>
           </select>
         </div>
-
       </header>
       <div className="content">
         <div className="code-editor-container">
@@ -141,15 +183,16 @@ function CodeEditorComponent() {
           />
         </div>
 
-
         <div className="display-container">
           <h3>Display</h3>
           <pre className="display-area">{output}</pre>
         </div>
       </div>
-
+      <ToastContainer /> {/* Add this line to include the toast container */}
       <footer className="footer">
-        <p>© {new Date().getFullYear()} Abhijeet Hiwale. All rights reserved.</p>
+        <p>
+          © {new Date().getFullYear()} Abhijeet Hiwale. All rights reserved.
+        </p>
       </footer>
     </div>
   );
